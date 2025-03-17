@@ -28,9 +28,9 @@ Este es un script en Python para jugar el clásico juego de la culebrita en PC. 
     ```
 
 ## Uso
-Para ejecutar el juego, simplemente ejecuta el archivo `main.py`:
+Para ejecutar el juego, simplemente ejecuta el archivo `Snake.py`:
 ```sh
-python main.py
+python Snake.py
 ```
 ## Controles
 - Flecha Arriba: Mover hacia arriba

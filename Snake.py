@@ -178,7 +178,6 @@ def main():
             if food.food_position in obstaculos.bloque_position:
                 food.posicion_random()
             break
-
         pygame.display.update()
         
 # ejecutar el juego
