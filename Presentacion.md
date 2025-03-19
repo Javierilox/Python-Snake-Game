@@ -33,10 +33,14 @@ Para ejecutar el juego, simplemente ejecuta el archivo `Snake.py`:
 python Snake.py
 ```
 ## Controles
-- Flecha Arriba: Mover hacia arriba
-- Flecha Abajo: Mover hacia abajo
-- Flecha Izquierda: Mover hacia la izquierda
-- Flecha Derecha: Mover hacia la derecha
+- Pulsar cualquier tecla para iniciar el Juego.
+- Flecha Arriba: Mover hacia arriba.
+- Flecha Abajo: Mover hacia abajo.
+- Flecha Izquierda: Mover hacia la izquierda.
+- Flecha Derecha: Mover hacia la derecha.
+- Tecla P: Pausar el juego.
+- Tecla ENTER: Salir del menu de pausa.
+- Tecla ESC: Salir del Juego.
 
 # Modos de Juego
 

@@ -4,6 +4,9 @@ import random
 import tkinter as tk
 from tkinter import messagebox as mBox
 
+imagen_inicio = pygame.image.load("Images/Snake.jpg")
+imagen_pausa = pygame.image.load("Images/Snake_Pausa.jpg")
+
 HEIGHT = 700
 WIDTH = 700
 BLACK = (0, 0, 0)
@@ -14,7 +17,7 @@ GREEN = (0, 128, 0)
 BLUE = (0, 0, 255)
 GOLD = (255, 215, 0)
 GRIND_SIZE = 20
-FPS = 60
+
 
 # clase de la serpiente
 class Snake:
@@ -25,6 +28,7 @@ class Snake:
         self.actual_movement = random.choice(["right", "left", "up", "down"])
         self.incorrect_movements = {"right": "left", "left": "right", "up": "down", "down": "up"}
         self.best_score = 0
+
 
 
 # Movimientos de la serpiente
@@ -46,6 +50,9 @@ class Snake:
                 
                 if new_direction and new_direction != self.incorrect_movements[self.actual_movement]:
                     self.actual_movement = new_direction
+
+                if event.key == pygame.K_p:
+                    menu_pausa(window)
         
         self.snake_movements(window)
         
@@ -92,8 +99,7 @@ class Snake:
         self.best_score = max(self.best_score, self.length)  # No restamos 1
         self.length = 0  # Reiniciamos a 0 en vez de 1
 
-        
-        
+# mensaje de game over       
 def mensaje(puntuacion):
     root = tk.Tk()
     root.withdraw()
@@ -147,7 +153,36 @@ def drawGrid(window):
         pygame.draw.line(window, BLACK, (x, 0), (x, HEIGHT))
     for y in range(0, HEIGHT, GRIND_SIZE):
         pygame.draw.line(window, BLACK, (0, y), (WIDTH, y))
-        
+
+# menu de inicio       
+def menu_inicio(start,window):
+    window.blit(imagen_inicio, (0, 0))
+    pygame.display.update()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key:
+                return False
+    return True
+# menu de pausa
+def menu_pausa(window):
+    paused = True
+    while paused:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    paused = False
+                elif event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+        window.blit(imagen_pausa, (0, 0))
+        pygame.display.update()
+
 # funcion principal
 def main():
     pygame.init()
@@ -158,7 +193,7 @@ def main():
     food = Food()
     font = pygame.font.SysFont("avenir", 28)
     obstaculos = Bloque()
-
+    start = True
     while True:
         clock.tick(12)
         drawGrid(window)
@@ -173,6 +208,9 @@ def main():
         food.dibujar_comida(window)
         obstaculos.dibujar_bloque(window)
 
+        # Si la variable start = True, Mostraremos la imagen de inicio
+        while start:
+            start = menu_inicio(start,window)
         # si la comida aparece en un bloque, la comida se mueve a otra posicion
         while True:
             if food.food_position in obstaculos.bloque_position:
