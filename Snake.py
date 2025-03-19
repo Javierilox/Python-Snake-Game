@@ -133,7 +133,6 @@ def chequear_comida(snake, food, bloque):
         food.posicion_random()  # Reubica la comida
         snake.length += 1  # Aumenta correctamente
         snake.best_score = max(snake.best_score, snake.length)  # Actualiza el mejor puntaje
-        bloque.bloque_random()
 
 
 # clase donde crearemos los obstaculos
@@ -144,8 +143,8 @@ class Bloque:
 
     # posicion random de los bloques
     def bloque_random(self):
-        # Genera 8 obstáculos en posiciones aleatorias
-        self.bloque_position = [(random.randrange(0, 680, 20), random.randrange(0, 680, 20)) for i in range(8)]
+        # Genera 14 obstáculos en posiciones aleatorias
+        self.bloque_position = [(random.randrange(0, 680, 20), random.randrange(0, 680, 20)) for i in range(14)]
 
     # dibujar los bloques
     def dibujar_bloque(self, window):
@@ -169,7 +168,7 @@ def drawGrid(window):
 
 
 # menu de inicio
-def menu_inicio(start, window):
+def menu_inicio(start,window):
     window.blit(imagen_inicio, (0, 0))
     pygame.display.update()
     for event in pygame.event.get():
